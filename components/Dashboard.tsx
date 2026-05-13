@@ -17,7 +17,7 @@ import { ImportCSV } from './ImportCSV';
 import toast from 'react-hot-toast';
 
 export function Dashboard() {
-  const { quotas, updateEmployee, addEmployee, deleteEmployee, addQuota, deleteQuota, mounted, setQuotas } = useEmployeeData();
+  const { quotas, updateEmployee, addEmployee, deleteEmployee, addQuota, deleteQuota, mounted, loading, error, refetch, setQuotas } = useEmployeeData();
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<FilterOptions>({ state: '', work: '' });
   const [showImport, setShowImport] = useState(false);
@@ -76,12 +76,31 @@ export function Dashboard() {
     toast.success(`Imported ${importedQuotas.length} quotas successfully!`);
   };
 
-  if (!mounted) {
+  if (!mounted || loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
+          <p className="text-gray-600 dark:text-gray-400">Loading data from database...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-4">
+          <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            Failed to Load Data
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">
+            {error}
+          </p>
+          <Button onClick={refetch} variant="primary">
+            Try Again
+          </Button>
         </div>
       </div>
     );
