@@ -105,6 +105,7 @@ export function useEmployeeData() {
 
   return {
     quotas,
+    setQuotas,
     updateEmployee,
     addEmployee,
     deleteEmployee,

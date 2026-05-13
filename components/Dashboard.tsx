@@ -1,24 +1,26 @@
 'use client';
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { Users, DollarSign, AlertTriangle, TrendingUp, Download, Plus } from 'lucide-react';
+import { Users, DollarSign, AlertTriangle, TrendingUp, Download, Plus, Upload } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import { useEmployeeData } from '@/hooks/useEmployeeData';
 import { calculateDashboardStats, formatCurrency } from '@/lib/utils';
 import { exportToExcel, exportToCSV } from '@/lib/exportUtils';
-import { FilterOptions } from '@/types/employee';
+import { FilterOptions, Quota } from '@/types/employee';
 import { StatCard } from './StatCard';
 import { SearchBar } from './SearchBar';
 import { FilterBar } from './FilterBar';
 import { QuotaSection } from './QuotaSection';
 import { Button } from './ui/Button';
 import { ThemeToggle } from './ThemeToggle';
+import { ImportCSV } from './ImportCSV';
 import toast from 'react-hot-toast';
 
 export function Dashboard() {
-  const { quotas, updateEmployee, addEmployee, deleteEmployee, addQuota, deleteQuota, mounted } = useEmployeeData();
+  const { quotas, updateEmployee, addEmployee, deleteEmployee, addQuota, deleteQuota, mounted, setQuotas } = useEmployeeData();
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<FilterOptions>({ state: '', work: '' });
+  const [showImport, setShowImport] = useState(false);
 
   const stats = useMemo(() => calculateDashboardStats(quotas), [quotas]);
 
@@ -67,6 +69,11 @@ export function Dashboard() {
   const handleExportCSV = () => {
     exportToCSV(quotas);
     toast.success('Data exported to CSV successfully!');
+  };
+
+  const handleImportCSV = (importedQuotas: Quota[]) => {
+    setQuotas(importedQuotas);
+    toast.success(`Imported ${importedQuotas.length} quotas successfully!`);
   };
 
   if (!mounted) {
@@ -148,6 +155,15 @@ export function Dashboard() {
               <Button
                 variant="secondary"
                 size="sm"
+                onClick={() => setShowImport(true)}
+                className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+              >
+                <Upload className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">Import</span>
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
                 onClick={handleExportExcel}
                 className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
               >
@@ -222,6 +238,14 @@ export function Dashboard() {
           </p>
         </div>
       </footer>
+
+      {/* Import CSV Modal */}
+      {showImport && (
+        <ImportCSV
+          onImport={handleImportCSV}
+          onClose={() => setShowImport(false)}
+        />
+      )}
     </div>
   );
 }
