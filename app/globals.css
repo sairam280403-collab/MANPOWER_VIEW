@@ -12,12 +12,8 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Force light mode - removed dark mode media query */
+/* Users can still toggle dark mode manually via the theme toggle button */
 
 body {
   background: var(--background);
