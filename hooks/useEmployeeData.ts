@@ -7,6 +7,8 @@ import { createInitialQuotas } from '@/lib/initialData';
 import toast from 'react-hot-toast';
 
 const STORAGE_KEY = 'manpower-quotas';
+const VERSION_KEY = 'manpower-data-version';
+const CURRENT_VERSION = '2.0'; // Updated version with hardcoded CSV data
 
 export function useEmployeeData() {
   const [quotas, setQuotas] = useState<Quota[]>([]);
@@ -14,8 +16,21 @@ export function useEmployeeData() {
 
   useEffect(() => {
     setMounted(true);
-    const savedQuotas = loadFromLocalStorage<Quota[]>(STORAGE_KEY, createInitialQuotas());
-    setQuotas(savedQuotas);
+    
+    // Check data version
+    const savedVersion = localStorage.getItem(VERSION_KEY);
+    
+    if (savedVersion !== CURRENT_VERSION) {
+      // Version mismatch or first time - use initial data and update version
+      const initialData = createInitialQuotas();
+      setQuotas(initialData);
+      localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+      saveToLocalStorage(STORAGE_KEY, initialData);
+    } else {
+      // Same version - load from localStorage
+      const savedQuotas = loadFromLocalStorage<Quota[]>(STORAGE_KEY, createInitialQuotas());
+      setQuotas(savedQuotas);
+    }
   }, []);
 
   useEffect(() => {
