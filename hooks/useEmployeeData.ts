@@ -3,29 +3,10 @@
 import { useState, useEffect } from 'react';
 import { Quota, Employee } from '@/types/employee';
 import { saveToLocalStorage, loadFromLocalStorage, createEmptyEmployee, generateId } from '@/lib/utils';
+import { createInitialQuotas } from '@/lib/initialData';
 import toast from 'react-hot-toast';
 
 const STORAGE_KEY = 'manpower-quotas';
-
-function createInitialQuotas(): Quota[] {
-  return [
-    {
-      id: generateId(),
-      name: 'Quota 1',
-      employees: Array.from({ length: 6 }, (_, i) => createEmptyEmployee(i + 1)),
-    },
-    {
-      id: generateId(),
-      name: 'Quota 2',
-      employees: Array.from({ length: 6 }, (_, i) => createEmptyEmployee(i + 1)),
-    },
-    {
-      id: generateId(),
-      name: 'Quota 3',
-      employees: Array.from({ length: 9 }, (_, i) => createEmptyEmployee(i + 1)),
-    },
-  ];
-}
 
 export function useEmployeeData() {
   const [quotas, setQuotas] = useState<Quota[]>([]);
