@@ -40,7 +40,7 @@ export function StatCard({ title, value, icon: Icon, trend, color = 'blue', dela
               <p className="text-[11px] sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 sm:mb-2 truncate">
                 {title}
               </p>
-              <p className="text-base sm:text-2xl font-bold text-gray-900 dark:text-gray-100 break-words">
+              <p className="text-base sm:text-2xl font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">
                 {value}
               </p>
               {trend && (

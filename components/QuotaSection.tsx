@@ -68,8 +68,8 @@ export function QuotaSection({
           </div>
           <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
             <div className="text-right">
-              <p className="text-xs text-gray-500 dark:text-gray-400">Total Due</p>
-              <p className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
+              <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">Total Due</p>
+              <p className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">
                 {formatCurrency(total)}
               </p>
             </div>
