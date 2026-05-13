@@ -31,15 +31,16 @@ export function StatCard({ title, value, icon: Icon, trend, color = 'blue', dela
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
+      className="h-full"
     >
-      <Card variant="glass" className="hover:shadow-xl transition-shadow">
-        <CardContent className="p-3 sm:p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <p className="text-[10px] sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-0.5 sm:mb-1">
+      <Card variant="glass" className="hover:shadow-xl transition-shadow h-full">
+        <CardContent className="p-3 sm:p-6 h-full">
+          <div className="flex items-center justify-between h-full">
+            <div className="flex-1 min-w-0">
+              <p className="text-[11px] sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-1 sm:mb-2 truncate">
                 {title}
               </p>
-              <p className="text-sm sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
+              <p className="text-base sm:text-2xl font-bold text-gray-900 dark:text-gray-100 break-words">
                 {value}
               </p>
               {trend && (

@@ -175,37 +175,37 @@ export function Dashboard() {
                 variant="secondary"
                 size="sm"
                 onClick={() => setShowImport(true)}
-                className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                className="flex items-center gap-1.5 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2"
               >
-                <Upload className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">Import</span>
+                <Upload className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span>Import</span>
               </Button>
               <Button
                 variant="secondary"
                 size="sm"
                 onClick={handleExportExcel}
-                className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                className="flex items-center gap-1.5 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2"
               >
-                <Download className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">Excel</span>
+                <Download className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span>Excel</span>
               </Button>
               <Button
                 variant="secondary"
                 size="sm"
                 onClick={handleExportCSV}
-                className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                className="flex items-center gap-1.5 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2"
               >
-                <Download className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">CSV</span>
+                <Download className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span>CSV</span>
               </Button>
               <Button
                 variant="primary"
                 size="sm"
                 onClick={addQuota}
-                className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2"
+                className="flex items-center gap-1.5 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2"
               >
-                <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">Add Quota</span>
+                <Plus className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span>Add Quota</span>
               </Button>
             </div>
           </div>

@@ -66,31 +66,33 @@ export function QuotaSection({
               ({quota.employees.length})
             </span>
           </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <div className="text-right mr-2 sm:mr-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-2">
+            <div className="w-full sm:w-auto text-left sm:text-right sm:mr-4">
               <p className="text-xs text-gray-500 dark:text-gray-400">Total Due</p>
-              <p className="text-sm sm:text-lg font-bold text-gray-900 dark:text-gray-100">
+              <p className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
                 {formatCurrency(total)}
               </p>
             </div>
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={onAddEmployee}
-              className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2"
-            >
-              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Add</span>
-            </Button>
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={handleDeleteQuota}
-              className="flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-4 py-1 sm:py-2"
-            >
-              <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="hidden sm:inline">Delete</span>
-            </Button>
+            <div className="flex gap-2 w-full sm:w-auto">
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={onAddEmployee}
+                className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs sm:text-sm px-4 sm:px-4 py-2 sm:py-2"
+              >
+                <Plus className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span>Add</span>
+              </Button>
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={handleDeleteQuota}
+                className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs sm:text-sm px-4 sm:px-4 py-2 sm:py-2"
+              >
+                <Trash2 className="w-4 h-4 sm:w-4 sm:h-4" />
+                <span>Delete</span>
+              </Button>
+            </div>
           </div>
         </div>
       </CardHeader>

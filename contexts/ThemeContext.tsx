@@ -18,12 +18,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
+    // Always default to light theme on mobile, only use saved preference
     if (savedTheme) {
       setTheme(savedTheme);
-    } else if (prefersDark) {
-      setTheme('dark');
+    } else {
+      // Default to light theme instead of checking system preference
+      setTheme('light');
     }
   }, []);
 
