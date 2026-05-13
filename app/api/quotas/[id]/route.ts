@@ -6,11 +6,11 @@ export const dynamic = 'force-dynamic';
 // PUT - Update quota name
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     const { name } = await request.json();
-    const { id } = await params;
+    const { id } = await context.params;
 
     await sql`
       UPDATE quotas
@@ -31,10 +31,10 @@ export async function PUT(
 // DELETE - Delete quota and all its employees
 export async function DELETE(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
 
     // Delete all employees in this quota first (due to foreign key constraint)
     await sql`

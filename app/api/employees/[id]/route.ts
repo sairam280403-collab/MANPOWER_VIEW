@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 // PUT - Update employee
 export async function PUT(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     const {
@@ -20,7 +20,7 @@ export async function PUT(
       visaExpiration,
       amountDue,
     } = await request.json();
-    const { id } = await params;
+    const { id } = await context.params;
 
     await sql`
       UPDATE employees
@@ -50,10 +50,10 @@ export async function PUT(
 // DELETE - Delete employee
 export async function DELETE(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
 
     await sql`
       DELETE FROM employees
